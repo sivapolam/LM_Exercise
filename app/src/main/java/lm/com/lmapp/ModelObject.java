@@ -5,5 +5,5 @@ package lm.com.lmapp;
  */
 
 public class ModelObject {
-    int i = 0;
+
 }
