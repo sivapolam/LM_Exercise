@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LMApp</string>
+    <string name="buttonINR">INR</string>
+    <string name="buttonSAR">SAR</string>
+    <string name="buttonAED">AED</string>
+
+</resources>
