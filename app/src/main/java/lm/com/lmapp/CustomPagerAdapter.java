@@ -12,9 +12,10 @@ import android.widget.TextView;
  * Created by skumar128 on 9/11/17.
  */
 
-public class CustomPagerAdapter extends PagerAdapter {
+public class CustomPagerAdapter extends PagerAdapter implements Constants{
 
     private Context mContext;
+    private String mCurr;
     int [] arrImage = new int[] {
         R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher
     };
@@ -23,15 +24,18 @@ public class CustomPagerAdapter extends PagerAdapter {
     };
 
     String [] arrPrice = new String[]{
-            "\u20B9 10,000","\u20B9 9,000","\u20B9 8,000"
+            "10,000","9,000","8,000"
     };
 
-    public CustomPagerAdapter(Context context) {
+    public CustomPagerAdapter(Context context, String curr) {
         mContext = context;
+        mCurr = curr;
     }
 
     @Override
     public Object instantiateItem(ViewGroup collection, int position) {
+
+        String prefix = null;
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.item, collection, false);
@@ -39,8 +43,21 @@ public class CustomPagerAdapter extends PagerAdapter {
         TextView title = (TextView) layout.findViewById(R.id.title);
         TextView price = (TextView) layout.findViewById(R.id.price);
         image.setImageResource(arrImage[position]);
+
+        switch (mCurr){
+            case INR:
+                prefix = "\u20B9";
+                break;
+            case SAR:
+                prefix = "SAR";
+                break;
+            case AED:
+                prefix = "AED";
+                break;
+        }
+
         title.setText(arrTitle[position]);
-        price.setText(arrPrice[position]);
+        price.setText(prefix+ " "+arrPrice[position]);
         collection.addView(layout);
 
         return layout;
